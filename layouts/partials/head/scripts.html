@@ -24,6 +24,27 @@
 {{ $closest := resources.Get "js/helper/closest.js" | resources.Minify }}
 <script defer src="{{ $closest.RelPermalink }}"></script>
   
+{{ if in .Params.Libraries "mathjax" }}
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      ignoreHtmlClass: 'tex2jax_ignore',
+      processHtmlClass: 'tex2jax_process'
+    }
+  };
+  </script>
+  {{ $js := .Site.Data.lib.js }}
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script async src="{{ $js.mathjax.url }}" id="MathJax-script"></script>
+{{ end }}
+
 <script>
   "use strict";
 
@@ -588,14 +609,18 @@
         xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
         xhr.onload = function () {
           if (xhr.status === 200) {
-            fuse = new Fuse(JSON.parse(xhr.response.toString('utf-8')), {
+            var text = JSON.parse(xhr.response.toString('utf-8'));
+            // console.log(text);
+            fuse = new Fuse(text, {
               keys: sectionType.includes('publication') ? ['title', 'abstract'] : ['title', 'description', 'content'],
+              ignoreLocation: true,
               includeMatches: enableSearchHighlight,
               shouldSort: true,
-              threshold: 0.4,
-              location: 0,
-              distance: 100,
-              maxPatternLength: 32,
+              findAllMatches: true,
+              threshold: 0.1,
+              // location: 0,
+              // distance: 1000000000,
+              maxPatternLength: 100,
               minMatchCharLength: 1,
             });
             window.fuse = fuse;
@@ -937,6 +962,7 @@
 
       searchText = e.target.value;
       var results = fuse.search(e.target.value);
+      // console.log(results)
       
       if (searchResultPosition === "main") {
         if (enableSearchHighlight) {

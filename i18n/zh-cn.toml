@@ -4,6 +4,9 @@ other = "搜索"
 [summary-dateformat]
 other = "2006年01月02日"
 
+[word-count]
+other = "字"
+
 [reading-time]
 other = "分钟"
 
@@ -62,10 +65,10 @@ other = "姓名"
 other = "电子邮件"
 
 [contact-tel]
-other = "Tel"
+other = "电话"
 
 [contact-file]
-other = "File"
+other = "文件"
 
 [contact-message]
 other = "消息"
@@ -74,7 +77,7 @@ other = "消息"
 other = "发送"
 
 [contact-browse]
-other = "Browse"
+other = "浏览"
 
 [tooltip-home]
 other = "主页"
@@ -87,6 +90,9 @@ other = "更新日期"
 
 [tooltip-reading-time]
 other = "阅读时长"
+
+[tooltip-word-count]
+other = "本文字数"
 
 [showcase-overview]
 other = "总览"

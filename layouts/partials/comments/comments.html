@@ -1,7 +1,8 @@
 {{ if $.Param "enableComment" }}
-  {{ if $.Param "disqus_shortname" }}
+  <script>console.log("fuck comment2")</script>
+  {{ if $.Param "disqus.disqus_shortname" }}
     {{ partial "comments/disqus.html" . }}
-  {{ else if $.Param "commento" }}
+  {{ else if $.Param "commento.enable" }}
     {{ partial "comments/commento.html" . }}
   {{ else if $.Param "valine.enable" }}
     {{ partial "comments/valine.html" . }}

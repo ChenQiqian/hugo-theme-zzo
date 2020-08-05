@@ -5,7 +5,10 @@ other = "Search"
 other = "Jan 2, 2006"
 
 [reading-time]
-other = "min read"
+other = "mins read"
+
+[word-count]
+other = "words"
 
 [tags]
 other = "Tags"
@@ -87,6 +90,10 @@ other = "Modified At"
 
 [tooltip-reading-time]
 other = "Reading Time"
+
+[tooltip-word-count]
+other = "Words number"
+
 
 [showcase-overview]
 other = "Overview"
